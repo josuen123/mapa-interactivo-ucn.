@@ -5,7 +5,7 @@ const $$ = s => document.querySelectorAll(s);
 const overlay = $('#overlay');
 let openPanel = null;
 
-/* ------- Paneles ------- */
+// Mostrar panel
 function showPanel(id, {updateHash=true} = {}){
   const p = document.getElementById(id);
   if(!p) return;
@@ -15,6 +15,8 @@ function showPanel(id, {updateHash=true} = {}){
   openPanel = p;
   if(updateHash) history.pushState(null, '', `#${id}`);
 }
+
+// Ocultar panel
 function hidePanel({clearHash=true} = {}){
   if(!openPanel) return;
   openPanel.setAttribute('aria-hidden','true');
@@ -26,15 +28,12 @@ overlay.addEventListener('click', ()=>hidePanel());
 document.addEventListener('keydown', e => { if(e.key === 'Escape') hidePanel(); });
 $$('[data-close]').forEach(btn => btn.addEventListener('click', ()=>hidePanel()));
 
-/* ------- Click en zonas ------- */
+// Click en zonas
 $$('.zone').forEach(z=>{
-  z.addEventListener('click', ()=>{
-    const id = z.dataset.panel;
-    if(id) showPanel(id);
-  });
+  z.addEventListener('click', ()=> showPanel(z.dataset.panel));
 });
 
-/* ------- Búsqueda ------- */
+// Búsqueda
 const input = $('#search');
 input.addEventListener('input', ()=>{
   const q = input.value.trim().toLowerCase();
@@ -47,14 +46,14 @@ input.addEventListener('input', ()=>{
   }
 });
 input.addEventListener('keydown', e=>{
-  if(e.key === 'Enter'){
+  if(e.key==='Enter'){
     const q = input.value.trim().toLowerCase();
     const match = Array.from($$('.zone')).find(z => (z.dataset.name||'').toLowerCase().includes(q));
     if(match) showPanel(match.dataset.panel);
   }
 });
 
-/* ------- Enlace directo por hash ------- */
+// Abrir panel desde hash
 function openFromHash(){
   const h = (location.hash || '').slice(1);
   if(!h) return;
