@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Mapa UCN — Recorte real (clipPath)</title>
-  <link rel="stylesheet" href="./styles.css?v=8" />
+  <title>Mapa UCN — Recorte real</title>
+  <link rel="stylesheet" href="./styles.css" />
 </head>
 <body>
   <header class="topbar">
@@ -18,50 +18,38 @@
 
   <main class="map-app" id="mapa">
     <div class="map">
-      <!-- SVG único: imagen base + recortes -->
+      <!-- SVG con fondo general -->
       <svg class="canvas" viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid meet" aria-label="Mapa UCN interactivo">
-        <!-- Imagen base -->
+        <!-- Fondo general -->
         <image href="./UCNMAP.png" x="0" y="0" width="1600" height="1000" />
 
-        <!-- Atenuación global -->
-        <rect class="dim" x="0" y="0" width="1600" height="1000"></rect>
-
-        <!-- ====== DEFINICIÓN DE RECORTES ====== -->
-        <defs>
-          <!-- Pabellón G6 / Depto. de Éxito Académico (polígono aproximado al área marcada) -->
-          <!-- Ajusta puntos si lo quieres más preciso -->
-          <clipPath id="clip-ed-g6">
-            <polygon points="
-              1278,555 1358,520 1430,558 1435,650 1355,688 1285,650
-            " />
-          </clipPath>
-
-          <!-- (Ejemplo) Otro edificio al lado por si quieres continuar -->
-          <clipPath id="clip-ed2">
-            <polygon points="1186,664 1236,648 1280,666 1282,712 1228,730 1184,710" />
-          </clipPath>
-        </defs>
-
-        <!-- ====== ZONAS CLICABLES ====== -->
-        <!-- G6 -->
+        <!-- Zona Pabellón G6 (imagen más pequeña y clicable) -->
         <g class="zone" data-name="Pabellón G6 — Depto. de Éxito Académico" data-panel="panel-g6">
-          <!-- La MISMA imagen base, recortada a la forma del edificio -->
-          <image href="./UCNMAP.png" x="0" y="0" width="1600" height="1000" clip-path="url(#clip-ed-g6)" class="piece" />
-          <!-- Área de interacción (mismo polígono) -->
-          <polygon class="hit" points="1278,555 1358,520 1430,558 1435,650 1355,688 1285,650" />
+          <image 
+  href="./pabellon-g6.png" 
+  x="1285" y="520" width="150" height="133" 
+  class="piece" 
+  style="cursor:pointer;" 
+  pointer-events="all"
+/>
           <title>Pabellón G6 — Depto. de Éxito Académico</title>
         </g>
 
-        <!-- (Opcional) Edificio ejemplo al lado -->
+        <!-- Zona ejemplo (también pequeña y clicable) -->
         <g class="zone" data-name="Edificio ejemplo" data-panel="panel-ed2">
-          <image href="./UCNMAP.png" x="0" y="0" width="1600" height="1000" clip-path="url(#clip-ed2)" class="piece" />
-          <polygon class="hit" points="1186,664 1236,648 1280,666 1282,712 1228,730 1184,710" />
+          <image 
+            href="./edificio-ejemplo.png" 
+            x="1184" y="648" width="100" height="80" 
+            class="piece" 
+            style="cursor:pointer;" 
+            pointer-events="all"
+          />
           <title>Edificio ejemplo</title>
         </g>
       </svg>
     </div>
 
-    <!-- Overlay + Paneles -->
+    <!-- Overlay -->
     <div id="overlay" class="overlay" hidden></div>
 
     <!-- Panel Pabellón G6 -->
@@ -70,7 +58,6 @@
       <h2 id="ttl-g6">Pabellón G6 — Depto. de Éxito Académico</h2>
       <p>Servicios de apoyo académico, tutorías y orientación estudiantil.</p>
       <div class="gallery">
-        <!-- Puedes reemplazar por fotos reales del edificio -->
         <img src="./pabellon-g6.png" alt="Pabellón G6 — Vista">
         <img src="./UCNMAP.png" alt="Ubicación en el mapa">
       </div>
@@ -80,22 +67,24 @@
         <li>Piso 1: Atención estudiantes / Piso 2: Tutorías</li>
       </ul>
     </section>
+    
 
-    <!-- Panel de ejemplo -->
+    <!-- Panel edificio ejemplo -->
     <section id="panel-ed2" class="panel" aria-hidden="true" role="dialog" aria-labelledby="ttl-ed2">
       <button class="close" data-close aria-label="Cerrar">×</button>
       <h2 id="ttl-ed2">Edificio ejemplo</h2>
       <p>Descripción breve.</p>
       <div class="gallery">
-        <img src="./UCNMAP.png" alt="Foto edificio ejemplo">
+        <img src="./edificio-ejemplo.png" alt="Foto edificio ejemplo">
       </div>
     </section>
   </main>
 
   <footer class="footer">
-    <small>Mapa UCN — Recorte real con SVG clipPath (hover + click) — HTML/CSS/JS.</small>
+    <small>Mapa UCN — Recosrte real con SVG clipPath (hover + click) — HTML/CSS/JS.</small>
   </footer>
 
-  <script src="./script.js?v=8"></script>
+  <script src="./script.js"></script>
 </body>
 </html>
+
