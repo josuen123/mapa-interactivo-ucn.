@@ -1,90 +1,43 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Mapa UCN — Recorte real</title>
-  <link rel="stylesheet" href="./styles.css" />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Mapa UCN — Coquimbo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <header class="topbar">
-    <h1>Mapa UCN</h1>
-    <div class="controls">
-      <label class="search">
-        <input id="search" type="search" placeholder="Buscar edificio…" autocomplete="off" />
-      </label>
-    </div>
-  </header>
-
-  <main class="map-app" id="mapa">
-    <div class="map">
-      <!-- SVG con fondo general -->
-      <svg class="canvas" viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid meet" aria-label="Mapa UCN interactivo">
-        <!-- Fondo general -->
-        <image href="./UCNMAP.png" x="0" y="0" width="1600" height="1000" />
-
-        <!-- Zona Pabellón G6 (imagen más pequeña y clicable) -->
-        <g class="zone" data-name="Pabellón G6 — Depto. de Éxito Académico" data-panel="panel-g6">
-          <image 
-  href="./pabellon-g6.png" 
-  x="1285" y="520" width="150" height="133" 
-  class="piece" 
-  style="cursor:pointer;" 
-  pointer-events="all"
-/>
-          <title>Pabellón G6 — Depto. de Éxito Académico</title>
-        </g>
-
-        <!-- Zona ejemplo (también pequeña y clicable) -->
-        <g class="zone" data-name="Edificio ejemplo" data-panel="panel-ed2">
-          <image 
-            href="./edificio-ejemplo.png" 
-            x="1184" y="648" width="100" height="80" 
-            class="piece" 
-            style="cursor:pointer;" 
-            pointer-events="all"
-          />
-          <title>Edificio ejemplo</title>
-        </g>
-      </svg>
-    </div>
-
-    <!-- Overlay -->
-    <div id="overlay" class="overlay" hidden></div>
-
-    <!-- Panel Pabellón G6 -->
-    <section id="panel-g6" class="panel" aria-hidden="true" role="dialog" aria-labelledby="ttl-g6">
-      <button class="close" data-close aria-label="Cerrar">×</button>
-      <h2 id="ttl-g6">Pabellón G6 — Depto. de Éxito Académico</h2>
-      <p>Servicios de apoyo académico, tutorías y orientación estudiantil.</p>
-      <div class="gallery">
-        <img src="./pabellon-g6.png" alt="Pabellón G6 — Vista">
-        <img src="./UCNMAP.png" alt="Ubicación en el mapa">
-      </div>
-      <ul class="details">
-        <li>Horario de atención: 09:00–17:30</li>
-        <li>Contacto: exito@ucn.cl</li>
-        <li>Piso 1: Atención estudiantes / Piso 2: Tutorías</li>
-      </ul>
-    </section>
-    
-
-    <!-- Panel edificio ejemplo -->
-    <section id="panel-ed2" class="panel" aria-hidden="true" role="dialog" aria-labelledby="ttl-ed2">
-      <button class="close" data-close aria-label="Cerrar">×</button>
-      <h2 id="ttl-ed2">Edificio ejemplo</h2>
-      <p>Descripción breve.</p>
-      <div class="gallery">
-        <img src="./edificio-ejemplo.png" alt="Foto edificio ejemplo">
-      </div>
-    </section>
-  </main>
-
-  <footer class="footer">
-    <small>Mapa UCN — Recosrte real con SVG clipPath (hover + click) — HTML/CSS/JS.</small>
-  </footer>
-
-  <script src="./script.js"></script>
+<header class="site-header">
+<div class="header-content">
+<img src="img/Escudo-UCN-Logos.png" alt="Logo UCN" class="ucn-logo" />
+<input id="search" type="search" placeholder="Buscar pabellón o sala..." />
+</div>
+</header>
+<main class="map-container">
+<div class="map-stage" id="map-stage">
+<div class="map-content">
+<img src="img/mapa-base.jpg" alt="Mapa UCN" class="map-base" />
+</div>
+</div>
+<aside id="info-panel" class="info-panel">
+<div class="panel-inner">
+<div class="handle-container">
+<div class="handle"></div>
+</div>
+<button id="close-panel" class="close-btn">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+</button>
+<div id="panel-content" class="panel-content">
+<img id="panel-img" src="" alt="" />
+<h2 id="panel-title"></h2>
+<p id="panel-desc"></p>
+</div>
+</div>
+</aside>
+</main>
+<script src="script.js"></script>
 </body>
 </html>
-
