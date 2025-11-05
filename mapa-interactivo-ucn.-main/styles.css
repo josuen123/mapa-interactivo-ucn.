@@ -134,38 +134,120 @@ body {
 /* g6 */
 
 #bot_G6 {
-  top: 70%;
-  left: 95%;
+  top: 69.9%;
+  left: 94.7%;
 }
 
 #bot_G6 .imagen_svg {
-  width: 136px;
-  height: 116px;
+  width: 139px;
+  height: 119px;
+  transform: scaleX(1.08); /* Dimencionar la vista horizontalmente */
   transition: transform 0.2s ease;
   filter: drop-shadow(0 3px 6px rgba(0,0,0,0.3));
 }
 
 #bot_G6:hover .imagen_svg {
-  transform: scale(1.1);
+  transform: scaleX(1.08) scale(1.1);
 }
 
 /* d2 */
 
 #bot_D2 {
-  top: 70%;
-  left: 95%;
+  top: 67.6%;
+  left: 68.2%;
 }
 
 #bot_D2 .imagen_svg {
-  width: 136px;
-  height: 116px;
+  width: 106px;
+  height: 96px;
+  transform: scaleX(1.2); /* Dimencionar la vista horizontalmente */
   transition: transform 0.2s ease;
   filter: drop-shadow(0 3px 6px rgba(0,0,0,0.3));
 }
 
 #bot_D2:hover .imagen_svg {
-  transform: scale(1.1);
+ transform: scaleX(1.2) scale(1.1);
+  
 }
+
+/* x */
+
+#bot_X {
+  top: 65.7%;
+  left: 75.9%;
+}
+
+#bot_X .imagen_svg {
+  width: 90px;
+  height: auto;
+  transform: scaleX(1.2); /* Dimencionar la vista horizontalmente */
+  transition: transform 0.2s ease;
+  filter: drop-shadow(0 3px 6px rgba(0,0,0,0.3));
+}
+
+#bot_X:hover .imagen_svg {
+ transform: scaleX(1.2) scale(1.1);
+  
+}
+
+/* b1 y b2 */
+
+#bot_B1_B2 {
+  top: 93.3%;
+  left: 81.7%;
+}
+
+#bot_B1_B2 .imagen_svg {
+  width: 98px;
+  height: auto;
+  transform: scaleX(1.2); /* Dimencionar la vista horizontalmente */
+  transition: transform 0.2s ease;
+  filter: drop-shadow(0 3px 6px rgba(0,0,0,0.3));
+}
+
+#bot_B1_B2:hover .imagen_svg {
+ transform: scaleX(1.2) scale(1.1);
+  
+}
+
+/* g5 */
+
+#bot_G5 {
+  top: -36.5%;
+  left: 41.7%;
+}
+
+#bot_G5 .imagen_svg {
+  width: 102px;
+  height: auto;
+  transform: scaleX(1.2); /* Dimencionar la vista horizontalmente */
+  transition: transform 0.2s ease;
+  filter: drop-shadow(0 3px 6px rgba(0,0,0,0.3));
+}
+
+#bot_G5:hover .imagen_svg {
+ transform: scaleX(1.2) scale(1.1);
+  
+}
+
+/* pace ERRORR CON LA REDIMENCION DE HOVERRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR */ 
+
+#bot_PACE {
+  top: 105.5%;
+  left: -23.3%;
+}
+#bot_PACE .imagen_svg {
+  width: 110px;
+  height: 100px;
+  transform: scaleX(1.1) scaleY(1.1); /* Dimencionar la vista horizontalmente */
+  transition: transform 0.2s ease;
+  filter: drop-shadow(0 3px 6px rgba(0,0,0,0.3));
+}
+
+#bot_PACE:hover .imagen_svg {
+ transform: scaleX(1.21) scaleY(1.21);
+}
+
 
 /* ETIQUETA DEBAJO DE SVG */
 
