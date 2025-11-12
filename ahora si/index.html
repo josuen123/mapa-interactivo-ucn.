@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <title>Mapa UCN — Guayacán</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+
+
+  <link rel="stylesheet" href="styles.css?=15" />
+</head>
+
+
+<body>
+  <header class="site-header">
+    <div class="header-content">
+      <img src="img/Escudo-UCN-Logos.png" alt="Logo UCN" class="ucn-logo" />
+      <input id="search" type="search" placeholder="Buscar pabellón o sala..." />
+    </div>
+  </header>
+
+  <div id="search-results" class="search-results-container"></div>
+
+  <main id="map-container" class="map-container">
+
+    <div class="map-stage" id="map-stage">
+
+      <div class="map-content">
+        <img src="img/mapa-base.jpg" alt="Mapa UCN" class="map-base" />
+
+        <div id="bot_G4" class="pin-wrapper" data-edificio-nombre="Pabellon G4">
+          <img src="img/SVG/G4.svg" alt="G4" class="imagen_svg" />
+          <div class="etiqueta">G4</div>
+        </div>
+
+        <div id="bot_G6" class="pin-wrapper" data-edificio-nombre="Pabellon G6">
+          <img src="img/SVG/G6.svg" alt="G6" class="imagen_svg" />
+          <div class="etiqueta">G6</div>
+        </div>
+
+        <div id="bot_D2" class="pin-wrapper" data-edificio-nombre="Pabellon D2">
+          <img src="img/SVG/D2.svg" alt="D2" class="imagen_svg" />
+          <div class="etiqueta">D2</div>
+        </div>
+
+        <div id="bot_X" class="pin-wrapper" data-edificio-nombre="Pabellon X">
+          <img src="img/SVG/X.svg" alt="X" class="imagen_svg" />
+          <div class="etiqueta">X</div>
+        </div>
+
+        <div id="bot_B1_B2" class="pin-wrapper" data-edificio-nombre="Pabellon B1/B2">
+          <img src="img/SVG/B1, B2.svg" alt="B1, B2" class="imagen_svg" />
+          <div class="etiqueta">B1 y B2</div>
+        </div>
+
+        <div id="bot_G5" class="pin-wrapper" data-edificio-nombre="Pabellon G5">
+          <img src="img/SVG/G5.svg" alt="G5" class="imagen_svg" />
+          <div class="etiqueta">G5</div>
+        </div>
+
+        <div id="bot_PACE" class="pin-wrapper" data-edificio-nombre="CASAS PACE">
+          <img src="img/SVG/PACE.svg" alt="G5" class="imagen_svg" />
+          <div class="etiqueta">CASAS PACE</div>
+        </div>
+
+      </div>
+    </div>
+
+    <aside id="info-panel" class="info-panel">
+      <div class="panel-inner">
+
+        <button id="close-panel" class="close-btn">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+
+        <div id="panel-content" class="panel-content">
+          </div>
+
+      </div>
+    </aside>
+  </main>
+
+  <script src="script.js?=5"></script>
+</body>
+</html>
