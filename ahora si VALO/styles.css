@@ -1,0 +1,400 @@
+/* === CONFIGURACIÓN GENERAL === */
+:root {
+  --font-family: 'Poppins', sans-serif;
+  --background: #f0f2f5;
+  --surface: #ffffff;
+  --text-primary: #1c1e21;
+  --text-secondary: #65676b;
+  --accent: #00509E;
+  --highlight: #FFA500;
+  --border-color: #ced0d4;
+  --shadow-color: rgba(0, 0, 0, 0.1);
+  --transition-speed: 0.4s;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: var(--font-family);
+  background-color: var(--background);
+  color: var(--text-primary);
+}
+
+/* === ENCABEZADO Y BUSCADOR === */
+.site-header {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  z-index: 100;
+}
+.header-content {
+  display: flex;
+  align-items: center;
+  height: 50px;
+  background-color: var(--surface);
+  border-radius: 25px;
+  padding: 0 10px;
+  box-shadow: 0 4px 20px var(--shadow-color);
+  border: 1px solid var(--border-color);
+  cursor: pointer;
+  transition: all var(--transition-speed) ease;
+  width: 50px;
+}
+.ucn-logo { height: 30px; min-width: 30px; }
+#search {
+  width: 100%;
+  border: none;
+  outline: none;
+  background: none;
+  font-size: 1rem;
+  font-family: var(--font-family);
+  color: var(--text-primary);
+  margin-left: 10px;
+  opacity: 0;
+  transition: opacity calc(var(--transition-speed) / 2) ease;
+}
+.header-content.search-expanded { width: 350px; cursor: default; }
+.header-content.search-expanded #search { opacity: 1; }
+
+
+/* === MAPA (LÓGICA DE "PANNING" O DESLIZAMIENTO) === */
+.map-container { 
+  height: 100vh; 
+  position: relative; 
+  overflow: hidden; 
+}
+
+/* El "Escenario" que permite deslizar el mapa */
+.map-stage {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: auto; /* Permite scroll en el mapa */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: filter 0.3s ease; 
+}
+
+/* === ¡¡LA SOLUCIÓN CLAVE!! === */
+/* Cuando el JS añade ".panel-is-open" al mapa... */
+.map-container.panel-is-open .map-stage {
+  pointer-events: none; /* ...el mapa se "apaga" y no roba el scroll */
+  filter: blur(2px) brightness(0.9); /* Efecto de desenfoque */
+}
+
+/* El Contenedor del mapa y los pines (tamaño fijo) */
+.map-content {
+  position: relative; 
+  width: 1280px;  /* Tamaño fijo del mapa */
+  height: 720px; /* Tamaño fijo del mapa (16:9) */
+  margin: 2rem; 
+  border-radius: 12px;
+  border: 4px solid var(--border-color); /* Borde visible */
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  overflow: hidden;
+  flex-shrink: 0; 
+}
+
+/* La imagen del mapa base */
+.map-base {
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+  filter: brightness(1.05) contrast(1.1) saturate(1.2);
+}
+
+/* === PINES (BOTONES SVG) === */
+
+/* Estilo general del pin (posicionamiento) */
+.pin-wrapper {
+  position: absolute;
+  transform: translate(-50%, -100%);
+  cursor: pointer;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.2s ease;
+}
+
+/* Coordenadas (top/left) y tamaños (px) de cada pin */
+/* (Usamos Píxeles fijos para que no "deriven" al cambiar tamaño) */
+
+#bot_G4 {
+  top: 51%;   /* ajustado */
+  left: 56.1%; /* ajustado */
+}
+#bot_G4 .imagen_svg {
+  width: 190px;  /* ajustado */
+  height: 165px;  /* ajustado */
+transition: transform 0.2s ease;
+
+}
+#bot_G4:hover .imagen_svg {
+  transform: scale(1.1);  /* ajustado */
+}
+
+#bot_G6 {
+  top: 65.6%;  /* ajustado */
+  left: 94.9%;  /* ajustado */
+}
+#bot_G6 .imagen_svg {
+  width: 131px;  /* ajustado */
+  height: 111px;   /* ajustado */
+  transform: scaleX(1.08);  /* ajustado */
+  transition: transform 0.2s ease;
+
+}
+#bot_G6:hover .imagen_svg {
+  transform: scaleX(1.08) scale(1.1);   /* ajustado */
+}
+
+#bot_D2 {
+  top: 63.9%;  /* ajustado */
+  left: 68.2%;  /* ajustado */
+}
+#bot_D2 .imagen_svg {
+  width: 100px;   /* ajustado */
+  height: 90px;   /* ajustado */
+  transform: scaleX(1.2);   /* ajustado */
+  transition: transform 0.2s ease;
+}
+#bot_D2:hover .imagen_svg {
+  transform: scaleX(1.2) scale(1.1);   /* ajustado */
+}
+
+#bot_X {
+  top: 62.7%; /* ajustado */
+  left: 75.9%;   /* ajustado */
+}
+#bot_X .imagen_svg {
+  width: 80px;   /* ajustado */
+  height: auto;  /* ajustado */
+  transform: scaleX(1.2);   /* ajustado */
+  transition: transform 0.2s ease;
+
+}
+#bot_X:hover .imagen_svg {
+  transform: scaleX(1.2) scale(1.1);  /* ajustado */
+}
+
+#bot_B1_B2 {
+  top: 84.5%;
+  left: 81.7%;
+}
+#bot_B1_B2 .imagen_svg {
+  width: 93px;
+  height: auto;
+  transform: scaleX(1.2);
+  transition: transform 0.2s ease;
+
+}
+#bot_B1_B2:hover .imagen_svg {
+  transform: scaleX(1.2) scale(1.1);
+}
+
+#bot_G5 {
+  top: 52.2%; /* ajustado */
+  left: 81.1%; /* ajustado */
+}
+#bot_G5 .imagen_svg {
+  width: 94px;
+  height: auto;
+  transform: scaleX(1.2);
+  transition: transform 0.2s ease;
+
+}
+#bot_G5:hover .imagen_svg {
+  transform: scaleX(1.2) scale(1.1);
+}
+
+#bot_PACE {
+  top: 105.5%; /* ⚠️ ¡Recuerda ajustar esto! */
+  left: -23.3%; /* ⚠️ ¡Recuerda ajustar esto! */
+}
+#bot_PACE .imagen_svg {
+  width: 88px;
+  height: 80px;
+  transform: scaleX(1.1) scaleY(1.1);
+  transition: transform 0.2s ease;
+
+}
+#bot_PACE:hover .imagen_svg {
+  transform: scaleX(1.21) scaleY(1.21);
+}
+
+/* Estilo de la etiqueta de texto bajo el pin */
+.etiqueta {
+  color: var(--text-primary);
+  background-color: rgba(255, 255, 255, 0.85);
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 9px;
+  border-radius: 6px;
+  margin-bottom: 4px;
+  white-space: nowrap;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.15);
+}
+
+/* === PANEL DE INFORMACIÓN (CON SCROLL INTERNO) === */
+.info-panel {
+  position: fixed;
+  z-index: 200;
+  pointer-events: none; /* El contenedor invisible no captura clics */
+  transition: transform var(--transition-speed), opacity var(--transition-speed);
+}
+
+.panel-inner {
+  background-color: var(--surface);
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  overflow: hidden;
+  pointer-events: auto; /* El panel visible SÍ captura clics */
+  height: 100%; 
+  display: flex;
+  flex-direction: column;
+}
+
+.close-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: rgba(255, 255, 255, 0.8);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-secondary);
+  transition: all 0.2s;
+  z-index: 10; 
+}
+.close-btn:hover {
+  background-color: #e9ecef;
+  color: var(--text-primary);
+  transform: rotate(90deg);
+}
+
+/* El contenedor del contenido (imagen, título, lista de salas) */
+.panel-content { 
+  padding: 1.5rem; 
+  flex-shrink: 1; /* Permite que se encoja para caber en el panel */
+  
+  /* === ¡¡LA SOLUCIÓN AL SCROLL DEL PANEL!! === */
+  overflow-y: auto; /* Añade scroll vertical SÓLO si es necesario */
+}
+
+#panel-img { width: 100%; height: 180px; object-fit: cover; border-radius: 12px; margin-bottom: 1rem; }
+#panel-title { font-size: 1.5rem; font-weight: 600; margin-bottom: 0.5rem; }
+#panel-desc { font-size: 1rem; color: var(--text-secondary); }
+
+/* === ESTILOS PARA RESULTADOS DE BÚSQUEDA === */
+.search-results-container {
+  display: none;
+  position: fixed;
+  top: calc(1rem + 50px + 5px);
+  left: 1rem;
+  z-index: 99;
+  width: 350px;
+  max-height: 400px;
+  overflow-y: auto;
+  background-color: var(--surface);
+  border-radius: 12px;
+  box-shadow: 0 4px 20px var(--shadow-color);
+  border: 1px solid var(--border-color);
+}
+.search-result-item {
+  padding: 12px 16px;
+  cursor: pointer;
+  border-bottom: 1px solid var(--border-color);
+  color: var(--text-secondary);
+}
+.search-result-item:last-child { border-bottom: none; }
+.search-result-item:hover { background-color: #f0f2f5; }
+.search-result-item strong { color: var(--text-primary); font-weight: 600; }
+.search-result-item.no-matches { cursor: default; color: var(--text-secondary); }
+
+
+/* === DISEÑO RESPONSIVE (PC y MÓVIL) === */
+
+/* Estilos para PC (Pantallas de más de 769px) */
+@media (min-width: 769px) {
+  .info-panel {
+    top: 50%;
+    right: 2rem;
+    width: 360px;
+    transform: translate(120%, -50%);
+    opacity: 0;
+    max-height: 85vh; /* Altura máxima en PC */
+  }
+  .info-panel.open {
+    transform: translate(0, -50%);
+    opacity: 1;
+  }
+  
+  /* Scrollbars visibles en el mapa (solo PC) */
+  .map-stage {
+    scrollbar-width: auto; 
+    scrollbar-color: var(--text-secondary) var(--background);
+  }
+  .map-stage::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+  }
+  .map-stage::-webkit-scrollbar-track {
+    background: var(--background);
+  }
+  .map-stage::-webkit-scrollbar-thumb {
+    background-color: var(--text-secondary);
+    border-radius: 10px;
+    border: 3px solid var(--background);
+  }
+  .map-stage::-webkit-scrollbar-thumb:hover {
+    background-color: var(--text-primary);
+  }
+}
+
+
+/* Estilos para Móvil (Pantallas de 768px o menos) */
+@media (max-width: 768px) {
+
+  /* El header se expande al 100% */
+  .header-content.search-expanded {
+    width: calc(100vw - 2rem);
+  }
+  
+  /* El panel de info aparece desde abajo */
+  .info-panel {
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    transform: translateY(100%);
+    max-height: 60vh; /* Altura máxima en Móvil */
+  }
+  .info-panel.open { transform: translateY(0); }
+
+  /* Ocultamos todas las barras de scroll en móvil (se usa el dedo) */
+  .map-stage {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .map-stage::-webkit-scrollbar {
+    display: none;
+  }
+  .panel-content {
+     -ms-overflow-style: none;
+     scrollbar-width: none;
+  }
+  .panel-content::-webkit-scrollbar {
+     display: none;
+  }
+  .search-results-container {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .search-results-container::-webkit-scrollbar {
+    display: none;
+  }
+}
